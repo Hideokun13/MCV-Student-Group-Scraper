@@ -4,6 +4,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.keys import Keys
 import time, csv, os
 from dotenv import load_dotenv
+from datetime import datetime
 
 # Load .env file
 load_dotenv()
@@ -43,6 +44,8 @@ driver.get(url)
 # Optional: Wait for the page to load completely (adjust time as needed)
 time.sleep(5)
 
+course_title = driver.find_element(By.CLASS_NAME, "courseville-course-title").text.replace(" ", "_").replace("/", "_").replace("\\", "_")
+
 # Find all elements with class 'cvgroupcard'
 group_cards = driver.find_elements(By.CLASS_NAME, "cvgroupcard")
 
@@ -66,7 +69,8 @@ for group_card in group_cards:
     })
 
 # Save the scraped data to a CSV file
-csv_file = "scraped_data.csv"
+current_datetime = datetime.now().strftime("%Y%m%d_%H%M%S")
+csv_file = f"{course_title}_{current_datetime}.csv"
 with open(csv_file, mode="w", newline="", encoding="utf-8") as file:
     writer = csv.writer(file)
     writer.writerow(["Group Name", "Members"])
