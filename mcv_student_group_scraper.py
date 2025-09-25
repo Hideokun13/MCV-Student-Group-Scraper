@@ -9,13 +9,14 @@ from datetime import datetime
 # Load .env file
 load_dotenv()
 
+url = input("Please provide an Group URL: ")
+
 # Initialize the WebDriver
 options = webdriver.ChromeOptions()
 options.add_experimental_option("detach", True)
 driver = webdriver.Chrome(options=options)
 
 # เปิดเว็บไซต์
-url = "<Target URL>"
 driver.get(url)
 
 # รอให้หน้าเว็บโหลดเสร็จ (เพิ่มเวลาตามความเหมาะสมหากเว็บโหลดช้า)
