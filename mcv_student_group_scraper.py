@@ -76,7 +76,7 @@ with open(csv_file, mode="w", newline="", encoding="utf-8") as file:
     writer = csv.writer(file)
     writer.writerow(["Group Name", "Members"])
     for group in scraped_data:
-        writer.writerow([group['group_name'], ", ".join(group['members'])])
+        writer.writerow([group['group_name'], ",".join(group['members'])])
 
 print(f"Data saved to {csv_file}")
 
